@@ -1,0 +1,34 @@
+<br>
+<div class="container">
+  <button class="btn btn-default" ui-sref="main">Home</button>
+  <button class="btn btn-default" ui-sref="addProject">Add project</button>
+</div>
+<br>
+<div class="container">
+  <table class="table table-hover">
+    <tr>
+      <th>Проект</th>
+      <th>Описание</th>
+      <th>Дата начала</th>
+      <th>Дата завершения</th>
+      <th>Бюджет проекта</th>
+    </tr>
+    <tr ng-repeat="project in projects">
+      <td>
+        <span ng-bind="project.projectname"></span>
+      </td>
+      <td>
+        <span ng-bind="project.projectdescription"></span>
+      </td>
+      <td class="date">
+        <span ng-bind="project.projectstartdate"></span>
+      </td>
+      <td class="date">
+        <span ng-bind="project.projectenddate"></span>
+      </td>
+      <td class="money">
+        <span ng-bind="project.projectbudget"></span>
+      </td>
+    </tr>
+  </table>
+</div>

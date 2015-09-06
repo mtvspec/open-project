@@ -1,0 +1,12 @@
+th{
+    text-align: center;
+    -webkit-user-select: none;
+    cursor: default;
+}
+td.center{
+    text-align: center;
+}
+td{
+    -webkit-user-select: none;
+    cursor: default;
+}
