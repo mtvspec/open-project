@@ -48,6 +48,7 @@
 
         // Delete task
         $scope.deleteTask = function(taskCopy){
+          console.log('Test');
           var modalInstance = $modal.open({
             templateUrl: 'templates/Tasks/delete/TaskDeleteTmpl.html',
             controller: 'TaskDeleteCtrl',

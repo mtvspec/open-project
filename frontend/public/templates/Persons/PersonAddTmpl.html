@@ -1,10 +1,10 @@
-<br>
 <div class="container">
-  <button
-      class="btn btn-default"
-      ui-sref="persons">Persons</button>
+  <div class="form-group">
+    <button
+        class="btn btn-default"
+        ui-sref="persons">Persons</button>
+  </div>
 </div>
-<br>
 <div class="container">
   <form name="forms.addPersonForm" class="form">
     <!-- Person's IIN -->
@@ -65,26 +65,23 @@
           ng-model="addPerson.sex"
           placeholder="Sex..."
           required>
-        <option value="1">Male</option>
+        <option value="1" selected>Male</option>
         <option value="2">Female</option>
       </select>
     </div>
-    <div>
-      <button
-          name="Add person button"
-          type="submit"
-          class="btn btn-default"
-          ng-click="addNewPerson()">Add person</button>
-      <button
-          name="Cancel"
-          type="submit"
-          class="btn btn-default"
-          ui-sref="projects">Cancel</button>
+    <div class="form-group">
+      <div>
+        <button
+            name="Add person button"
+            type="submit"
+            class="btn btn-default"
+            ng-click="addNewPerson()">Add person</button>
+        <button
+            name="Cancel"
+            type="submit"
+            class="btn btn-default"
+            ui-sref="projects">Cancel</button>
+      </div>
     </div>
   </form>
-</div>
-<div>
-  <pre>
-    {{addPerson | json}}
-  </pre>
 </div>

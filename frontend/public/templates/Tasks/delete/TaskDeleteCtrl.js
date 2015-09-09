@@ -21,5 +21,6 @@
           console.error('DELETE task:', response.status, response.statusText);
         };
       };
-  };
-})
+    };
+
+})();

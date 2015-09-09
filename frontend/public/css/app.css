@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Sansation Light";
+    src: url('../resources/fonts/Sansation_Regular.ttf');
+}
 body{
     padding-top: 70px;
+    font-family: "Sansation Regular";
 }
