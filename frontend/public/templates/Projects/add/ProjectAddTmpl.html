@@ -1,0 +1,71 @@
+<br>
+<div class="container">
+  <button class="btn btn-default" ui-sref="projects">Projects</button>
+</div>
+<div class="container">
+  <hr>
+  <form name="forms.addProjectForm"
+        class="form">
+    <!-- Project name -->
+    <div class="form-group">
+      <input name="projectName"
+             type="text"
+             class="form-control"
+             ng-model="vm.projectName"
+             placeholder="Enter project name...">
+    </div>
+    <!-- Project description -->
+    <div class="form-group">
+      <input name="projectDescription"
+             type="text"
+             class="form-control"
+             ng-model="vm.projectDescription"
+             placeholder="Enter project description...">
+    </div>
+    <!-- Project start date -->
+    <div class="form-group">
+      <input name="projectStartDate"
+             type="date"
+             class="form-control"
+             ng-model="vm.projectStartDate"
+             placeholder="Enter project start date...">
+    </div>
+    <!-- Project end date -->
+    <div class="form-group">
+      <input name="projectEndDate"
+             type="date"
+             class="form-control"
+             ng-model="vm.projectEndDate"
+             placeholder="Enter project end date...">
+    </div>
+    <!-- Project budget -->
+    <div class="form-group">
+      <input name="projectBudget"
+             type="number"
+             class="form-control"
+             ng-model="vm.projectBudget"
+             placeholder="Enter project budget...">
+    </div>
+    <!-- Project manager -->
+    <div class="form-group">
+      <select name="projectManager"
+              type="text"
+              class="form-control"
+              ng-model="vm.projectManagerId"
+              placeholder="Enter project manager...">
+        <option value="1">Абенов Д.К.</option>
+        <option value="2">Ожанов Р.А.</option>
+      </select>
+    </div>
+    <div class="container">
+      <button
+          type="submit"
+          class="btn btn-default"
+          ng-click="addProject()">Add project</button>
+      <button
+          type="submit"
+          class="btn btn-default"
+          ui-sref="projects">Cancel</button>
+    </div>
+  </form>
+</div>

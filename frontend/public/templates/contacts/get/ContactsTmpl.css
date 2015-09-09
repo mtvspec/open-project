@@ -1,0 +1,9 @@
+th{
+    text-align: center;
+}
+td.date{
+    text-align: center;
+}
+td.money{
+    text-align: right;
+}

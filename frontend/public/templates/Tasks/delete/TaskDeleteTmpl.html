@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">Task delete confirmation</h4>
+</div>
+<div class="modal-body">
+  <form
+      name="forms.deleteTaskForm"
+      class="form">
+    <!-- Task name -->
+    <div class="form-group">
+      <label
+          >Delete this task?</label>
+      <input
+          name="taskName"
+          type="text"
+          class="form-control"
+          ng-bind="task.taskName"
+          required>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+      name="Add task button"
+      type="submit"
+      class="btn btn-default"
+      ng-click="submit()">Delete task</button>
+  <button
+      name="Cancel"
+      type="submit"
+      class="btn btn-default"
+      ng-click="$dismiss">Cancel</button>
+</div>
+<!-- TODO Почему не выводится? -->
+<div class="well">
+  <pre ng-bind="forms.deleteTaskForm | json"></pre>
+</div>
+<div class="well">
+  <pre ng-bind="forms | json"></pre>
+</div>
+<div class="well">
+  <pre ng-bind="task | json"></pre>
+</div>
