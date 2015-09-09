@@ -12,10 +12,10 @@
     var _tasksPromise;
 
     return {
-      getAll: getAll
+      getAllTasks: getAllTasks
     };
 
-    function getAll(){
+    function getAllTasks(){
       if(_tasksPromise){
         return _tasksPromise;
       } else {

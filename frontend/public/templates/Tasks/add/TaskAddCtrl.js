@@ -4,12 +4,10 @@
   angular.module('app')
     .controller('TaskAddCtrl', TaskAddCtrl);
 
-    function TaskAddCtrl($scope, $http, $modal, task){
-
-      console.debug(task);
+    function TaskAddCtrl($scope, $http){
 
       $scope.forms = {};
-      $scope.task = task;
+      $scope.taskToAdd = {};
 
       $scope.hasError = hasError;
       $scope.submit = submit;
@@ -21,23 +19,6 @@
         }
       };
 
-    $scope.addTask = function(task){
-      var modalInstance = $modal.open({
-        templateUrl: 'templates/Tasks/TaskAddTmpl.html',
-        controller: 'TaskEditCtrl',
-        resolve: {
-          task: function(){
-            return taskCopy;
-          }
-        },
-        size: 'md'
-      });
-
-      modalInstance.result.then(function(result){
-        console.debug('SUCCESS: ', result);
-      });
-    };
-
     function submit(){
       $scope.forms.addTaskForm.$setSubmitted();
       if($scope.forms.addTaskForm.$valid){
@@ -45,12 +26,25 @@
           method: 'POST',
           url: '/api/tasks',
           data: {
-            taskname: task.taskname
+            taskName: $scope.taskToAdd.taskName
           }
         }).then(function(){
+            $http({
+              method: 'GET',
+              url: '/api/tasks'
+            }).then(function(response){
+              $scope.taskToAdd = response.data;
+              console.log(response.data);
+            }), function(response){
+              console.error('GET all tasks:',
+                response.status,
+                response,statusText);
+            };
           $scope.$close('SUCCESS');
         }), function(response){
-          console.error('POST task:', response.status, response.statusText);
+          console.error('POST task:',
+            response.status,
+            response.statusText);
         };
       };
     };

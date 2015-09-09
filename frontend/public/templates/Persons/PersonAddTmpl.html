@@ -1,32 +1,90 @@
 <br>
 <div class="container">
-  <button class="btn btn-default" ui-sref="main">Home</button>
+  <button
+      class="btn btn-default"
+      ui-sref="persons">Persons</button>
 </div>
 <br>
 <div class="container">
-  <form class="form">
+  <form name="forms.addPersonForm" class="form">
+    <!-- Person's IIN -->
     <div class="form-group">
-      <input type="number" class="form-control" name="iin" ng-model="formData.iin" placeholder="IIN..." required>
+      <input
+          name="Person's IIN"
+          type="number"
+          class="form-control"
+          ng-model="addPerson.iin"
+          placeholder="IIN..."
+          required>
     </div>
+    <!-- Person's last name -->
     <div class="form-group">
-      <input type="text" class="form-control" name="personLastName" ng-model="formData.lastName" placeholder="Last name..." required>
+      <input
+          name="Person's last name"
+          type="text"
+          class="form-control"
+          ng-model="addPerson.lastName"
+          placeholder="Last name..."
+          required>
     </div>
+    <!-- Person's first name -->
     <div class="form-group">
-      <input type="text" class="form-control" name="personFirstName" ng-model="formData.firstName" placeholder="First name..." required>
+      <input
+          name="Person's first name"
+          type="text"
+          class="form-control"
+          ng-model="addPerson.firstName"
+          placeholder="First name..."
+          required>
     </div>
+    <!-- Person's middle name -->
     <div class="form-group">
-      <input type="text" class="form-control" name="personMiddleName" ng-model="formData.middleName" placeholder="Middle name..." required>
+      <input
+          name="Person's middle name"
+          type="text"
+          class="form-control"
+          ng-model="addPerson.middleName"
+          placeholder="Middle name..."
+          required>
     </div>
+    <!-- Person's date of berth -->
     <div class="form-group">
-      <input type="date" class="form-control" name="personDOB" ng-model="formData.dob" placeholder="Date of birth..." required>
+      <input
+          name="Person's date of berth"
+          type="date"
+          class="form-control"
+          ng-model="addPerson.dob"
+          placeholder="Date of birth..."
+          required>
     </div>
+    <!-- Person's sex -->
     <div class="form-group">
-      <select class="form-control" name="projectManager" ng-model-options="form.sex" placeholder="Sex..." required>
-        <option>Male</option>
-        <option>Female</option>
+      <select
+          name="Person's sex"
+          class="form-control"
+          ng-model="addPerson.sex"
+          placeholder="Sex..."
+          required>
+        <option value="1">Male</option>
+        <option value="2">Female</option>
       </select>
     </div>
-    <button type="submit" name="addPerson" ng-click="addPerson(formData)" class="btn btn-default">Add person</button>
-    <button type="submit" name="Cancel" class="btn btn-default" ui-sref="projects">Cancel</button>
+    <div>
+      <button
+          name="Add person button"
+          type="submit"
+          class="btn btn-default"
+          ng-click="addNewPerson()">Add person</button>
+      <button
+          name="Cancel"
+          type="submit"
+          class="btn btn-default"
+          ui-sref="projects">Cancel</button>
+    </div>
   </form>
+</div>
+<div>
+  <pre>
+    {{addPerson | json}}
+  </pre>
 </div>

@@ -1,28 +1,45 @@
-angular.module('app')
-  .controller('PersonsCtrl', function($scope, $http){
-    $scope.persons = {};
+(function(){
+  'use strict';
 
-    // GET all persons
-    $http.get('/api/persons')
-      .success(function(data){
-        $scope.persons = data;
-        console.log(data);
-      })
-      .error(function(error){
-        console.log('GET all persons:', error);
+  angular.module('app')
+    .controller('PersonsCtrl', function($scope, $http){
+
+      $scope.addPerson = {};
+      $scope.forms = {};
+
+      // Get all persons
+      $http({
+        method: 'GET',
+        url: '/api/persons'
+      }).then(function (response) {
+        $scope.persons = response.data;
+      }, function (response) {
+        console.error('GET all persons: ', response.status, response.statusText);
       });
 
-    // POST new person
-    $scope.addPerson = function(){
-      $http.post('/api/persons', $scope.formData)
-        .success(function(data){
-          $scope.formData = {};
+      // Add new person
+      $scope.addNewPerson = function(){
+        $http({
+          method: 'POST',
+          url: '/api/persons',
+          data: $scope.addPerson
+        }).then(function(data){
+          $scope.persons = {};
           $scope.persons = data;
-          console.log(data);
-        })
-        .error(function(error){
-          console.log(data);
-          console.log('POST person error:', error);
-        });
-    };
-  });
+        }), function(response){
+          console.error('POST new person:', response.status, response.statusText);
+        };
+      };
+
+      // Delete person
+      $scope.deletePerson = function(personID){
+        $http({
+          method: 'DELETE',
+          url: '/api/persons/' + personID
+        }).then(), function(response){
+          console.error('DELETE person:', response.status, response.statusText);
+        };
+      };
+
+    });
+})();

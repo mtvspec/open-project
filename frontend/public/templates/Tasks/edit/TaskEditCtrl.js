@@ -4,51 +4,34 @@
   angular.module('app')
     .controller('TaskEditCtrl', TaskEditCtrl);
 
-  function TaskEditCtrl($scope, $http, $modal, task) {
-
-    console.debug(task);
+  function TaskEditCtrl($scope, $http, originalTask) {
 
     $scope.forms = {};
-    $scope.task = task;
+    $scope.task = angular.copy(originalTask);
+
+    console.log(originalTask);
 
     $scope.hasError = hasError;
     $scope.submit = submit;
 
     function hasError(field) {
-      var field = $scope.forms.updateTaskForm[field];
+      var field = $scope.forms.editTaskForm[field];
       if (field) {
-        return field.$invalid && ($scope.forms.updateTaskForm.$submitted || !field.$pristine);
+        return field.$invalid && ($scope.forms.editTaskForm.$submitted || !field.$pristine);
       }
     };
 
-    // Update task
-    $scope.updateTask = function(task){
-      var modalInstance = $modal.open({
-        templateUrl: '/templates/Tasks/TaskEditTmpl.html',
-        controller: 'TaskEditCtrl',
-        resolve: {
-          task: function () {
-            return taskCopy;
-          }
-        },
-        size: 'md'
-      });
-
-      modalInstance.result.then(function (result) {
-        console.debug('SUCCESS: ', result);
-      });
-    };
-
     function submit() {
-      $scope.forms.updateTaskForm.$setSubmitted();
-      if($scope.forms.updateTaskForm.$valid){
+      $scope.forms.editTaskForm.$setSubmitted();
+      if($scope.forms.editTaskForm.$valid){
         $http({
           method: 'PUT',
-          url: '/api/tasks/' + task.id,
+          url: '/api/tasks/' + $scope.task.id,
           data: {
-            taskname: task.taskname
+            taskname: $scope.task.taskName
           }
         }).then(function(){
+          angular.copy($scope.tasks, originalTask);
           $scope.$close('SUCCESS');
         }), function(response){
           console.error('UPDATE task:', response.status, response.statusText);

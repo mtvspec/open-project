@@ -8,10 +8,10 @@
     <!-- Task name -->
     <div class="form-group">
       <input
-          name="taskName"
+          name="fldTaskName"
           type="text"
           class="form-control"
-          ng-model="task.taskName"
+          ng-model="taskToAdd.taskName"
           placeholder="Task name..."
           required>
       <div ng-messages="forms.addTaskForm.taskName.$error" ng-show="hasError('taskName')">
@@ -22,7 +22,7 @@
 </div>
 <div class="modal-footer">
   <button
-      name="Add task button"
+      name="btnAddTask"
       type="submit"
       class="btn btn-default"
       ng-click="submit()">Add task</button>
@@ -32,13 +32,9 @@
       class="btn btn-default"
       ng-click="$dismiss">Cancel</button>
 </div>
-<!-- TODO Почему не выводится? -->
-<div class="well">
-  <pre ng-bind="forms.AddTaskForm | json"></pre>
-</div>
 <div class="well">
   <pre ng-bind="forms | json"></pre>
 </div>
 <div class="well">
-  <pre ng-bind="task | json"></pre>
+  <pre ng-bind="taskToAdd | json"></pre>
 </div>

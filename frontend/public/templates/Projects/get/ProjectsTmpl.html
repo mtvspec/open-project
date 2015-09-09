@@ -12,29 +12,27 @@
       <th>Дата начала</th>
       <th>Дата завершения</th>
       <th>Бюджет проекта</th>
+      <th>Менеджер проекта</th>
     </tr>
     <tr ng-repeat="project in projects">
       <td>
-        <span ng-bind="project.projectname"></span>
+        <span ng-bind="project.projectName"></span>
       </td>
       <td>
-        <span ng-bind="project.projectdescription"></span>
+        <span ng-bind="project.projectDescription"></span>
       </td>
       <td class="date">
-        <span ng-bind="project.projectstartdate"></span>
+        <span ng-bind="project.projectStartDate"></span>
       </td>
       <td class="date">
-        <span ng-bind="project.projectenddate"></span>
+        <span ng-bind="project.projectEndDate"></span>
       </td>
       <td class="money">
-        <span ng-bind="project.projectbudget"></span>
+        <span ng-bind="project.projectBudget"></span>
+      </td>
+      <td>
+        <span ng-bind="project.projectManagerId"></span>
       </td>
     </tr>
   </table>
-
-  <div class="well">
-      <pre>
-        {{projects | json}}
-      </pre>
-  </div>
 </div>

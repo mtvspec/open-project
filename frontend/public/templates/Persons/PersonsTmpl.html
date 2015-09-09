@@ -3,7 +3,7 @@
   <button class="btn btn-default" ui-sref="main">Home</button>
   <button class="btn btn-default" ui-sref="addPerson">Add person</button>
   <hr>
-  <input class="form-control" type="text" ng-model="searchPerson" placeholder="Search person...">
+  <input class="form-control" type="text" ng-model="persons.searchPerson" placeholder="Search person...">
 </div>
 <br>
 <div class="container">
@@ -15,7 +15,7 @@
       <th>Отчество</th>
       <th>Дата рождения</th>
     </tr>
-    <tr ng-repeat="person in persons | filter:searchPerson">
+    <tr ng-repeat="person in persons | filter: persons.searchPerson track by $index">
       <td class="center">
         <span ng-bind="person.iin"></span>
       </td>
@@ -30,6 +30,9 @@
       </td>
       <td class="center">
         <span ng-bind="person.dob"></span>
+      </td>
+      <td>
+        <button type="button" class="btn btn-sm" ng-click="deletePerson(person.id)">Delete</button>
       </td>
     </tr>
   </table>

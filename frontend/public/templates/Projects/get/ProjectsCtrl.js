@@ -8,6 +8,8 @@
 
       var _url = '/api/projects';
 
+      console.log(_url);
+
       // GET all projects
       $http({
         method: 'GET',
@@ -21,7 +23,7 @@
           response.statusText);
       };
 
-      // Rewrite with method, is deprecated
+      // TODO Rewrite with method, is deprecated
       // POST new projects
       $scope.addProject = function(){
         $http.post('/api/projects', $scope.vm)

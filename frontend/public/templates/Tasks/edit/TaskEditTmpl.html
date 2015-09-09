@@ -3,37 +3,31 @@
 </div>
 <div class="modal-body">
   <form
-      name="forms.updateTaskForm"
+      name="forms.editTaskForm"
       class="form">
     <!-- Task name -->
     <div class="form-group">
       <input
-          name="taskname"
+          name="fldTaskName"
           type="text"
           class="form-control"
-          ng-model="task.taskname"
+          ng-model="tasks.taskName"
           placeholder="Task name..."
           required>
-
-      <div ng-messages="forms.updateTaskForm.taskname.$error" ng-show="hasError('taskname')">
+      <div ng-messages="forms.editTaskForm.FldTaskName.$error" ng-show="hasError('fldTaskName')">
         <div ng-message="required">This field is required</div>
       </div>
     </div>
-
   </form>
-
-  <div class="well">
-    <pre>{{forms.updateTaskForm | json}}</pre>
-  </div>
 </div>
 <div class="modal-footer">
   <button
-      name="Add task button"
+      name="btnSaveTask"
       type="submit"
       class="btn btn-primary"
       ng-click="submit()">Save task</button>
   <button
-      name="Cancel"
+      name="btnCancel"
       type="submit"
       class="btn btn-default"
       ng-click="$dismiss()">Cancel</button>
