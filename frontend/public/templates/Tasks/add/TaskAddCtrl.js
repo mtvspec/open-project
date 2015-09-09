@@ -29,17 +29,6 @@
             taskName: $scope.taskToAdd.taskName
           }
         }).then(function(){
-            $http({
-              method: 'GET',
-              url: '/api/tasks'
-            }).then(function(response){
-              $scope.taskToAdd = response.data;
-              console.log(response.data);
-            }), function(response){
-              console.error('GET all tasks:',
-                response.status,
-                response,statusText);
-            };
           $scope.$close('SUCCESS');
         }), function(response){
           console.error('POST task:',

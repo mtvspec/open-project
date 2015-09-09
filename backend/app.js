@@ -140,62 +140,54 @@
   app.route('/api/tasks')
     // GET all tasks
     .get(function(req, res){
-      var results = [];
-      var selectAllTasksQuery = {
-        fields: {
-          id: 'id',
-          taskName: 'taskName'
-        },
-        tables: {
-          projects: 'tasks'
-        }
-      };
+      var tasks = [];
       pg.connect(function(err, client){
-        var query = client.query(selectFieldsFromTables(selectAllTasksQuery));
-        query.on('row', function(row) {
-          results.push(row);
+        var query = client.query({
+          text: "SELECT id, taskName FROM tasks ORDER BY id ASC"
         });
-        query.on('end', function() {
-          client.end();
-          return res.json(results);
-        });
-        if(err) {
-          console.log(err);
+        if(err){
+          console.log('GET all persons error:', err);
         }
+        else {
+          query.on('row', function(row){
+            tasks.push(row);
+          });
+          query.on('end', function(){
+            client.end();
+            return res.json(tasks);
+          });
+        };
       });
     })
 
     // POST new task
     .post(function(req, res){
+      console.log("POST new task");
       var results = [];
-      var selectAllTasksQuery = {
-        fields: {
-          id: 'id',
-          taskName: 'taskName'
-        },
-        tables: {
-          tasks: 'tasks'
-        }
-      };
       var data = {taskName: req.body.taskName};
       pg.connect(function(err, client){
-        var id = client.query("INSERT INTO tasks(taskName) VALUES($1)", [data.taskName]) + " RETURNING id";
-        console.log(id);
-        var query = client.query(selectFieldsFromTables(selectAllTasksQuery) +' ORDER BY id ASC');
-        query.on('row', function(row) {
-          row = {
-            id: row.id,
-            taskName: row.taskname
+        client.query({
+          text: "INSERT INTO tasks(id, taskName) VALUES(DEFAULT, $1) RETURNING id",
+          values: [data.taskName]
+        }, function(err, result){
+          if(err){
+            if(+err.code === 23505){
+              var duplicateKeyError = {
+                error: 'duplicate key'};
+              console.log(duplicateKeyError);
+              client.end();
+              return res.json(duplicateKeyError);
+            } else if(err) {
+              console.log('POST new task:', err);
+            }
+            else {
+              results.push(result);
+              console.log('Result:', result);
+              client.end();
+              return res.writeHead(200);
+            };
           };
-          results.push(row);
         });
-        query.on('end', function() {
-          client.end();
-          return res.json(results);
-        });
-        if(err) {
-          console.log('POST new task error:', err);
-        }
       });
     });
 
@@ -203,15 +195,19 @@
     app.put('/api/tasks/:taskID', function(req, res) {
       var id = req.params.taskID;
       var data = {taskName: req.body.taskName};
-      pg.connect(conStr, function (err, client) {
-        var query = client.query("UPDATE tasks SET taskName=$1 WHERE id=$2", [data.taskName, id]);
-        query.on('end', function(){
-          client.end();
-          return res.sendStatus(200);
+      pg.connect(function (err, client) {
+        client.query({
+          text: "UPDATE tasks SET taskName=$1 WHERE id=$2",
+          values: [data.taskName, id]
+        }, function(err){
+          if(err.code === '22P02'){
+            console.log('required taskID');
+          }
+          else {
+            client.end();
+            return res.sendStatus(200);
+          };
         });
-        if (err) {
-          console.log('POST new task error:', err);
-        }
       });
     });
 

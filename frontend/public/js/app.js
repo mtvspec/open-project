@@ -45,16 +45,6 @@
           url: '/tasks',
           templateUrl: 'templates/Tasks/get/TasksTmpl.html',
           controller: 'TasksCtrl'
-        })
-        .state('addTask', {
-          url: '/tasks',
-          templateUrl: 'templates/Tasks/TaskAddTmpl.html',
-          controller: 'TaskAddCtrl'
-        })
-        .state('editTask', {
-          url: '/tasks',
-          templateUrl: 'templates/Tasks/edit/TaskEditTmpl.html',
-          controller: 'TaskEditCtrl'
         });
     });
 })();

@@ -7,9 +7,7 @@
   function TaskEditCtrl($scope, $http, originalTask) {
 
     $scope.forms = {};
-    $scope.task = angular.copy(originalTask);
-
-    console.log(originalTask);
+    $scope.tasks = angular.copy(originalTask);
 
     $scope.hasError = hasError;
     $scope.submit = submit;
@@ -26,9 +24,9 @@
       if($scope.forms.editTaskForm.$valid){
         $http({
           method: 'PUT',
-          url: '/api/tasks/' + $scope.task.id,
+          url: '/api/tasks/' + $scope.tasks.id,
           data: {
-            taskname: $scope.task.taskName
+            taskname: $scope.tasks.taskname
           }
         }).then(function(){
           angular.copy($scope.tasks, originalTask);

@@ -5,8 +5,8 @@
     .controller('TasksCtrl', function($scope, $http, $modal) {
 
       $scope.task = {};
-      $scope.forms = {};
 
+      // Get all tasks
       $http({
         method: 'GET',
         url: '/api/tasks'
@@ -45,6 +45,25 @@
         modalInstance.result.then(function (result) {
           console.debug('SUCCESS: ', result);
         });
+
+        // Delete task
+        $scope.deleteTask = function(taskCopy){
+          var modalInstance = $modal.open({
+            templateUrl: 'templates/Tasks/delete/TaskDeleteTmpl.html',
+            controller: 'TaskDeleteCtrl',
+            resolve: {
+              task: function(){
+                return taskCopy;
+              }
+            },
+            size: 'md'
+          });
+
+          modalInstance.result.then(function(result){
+            console.debug('SUCCESS: ', result);
+          });
+        };
+
       };
     });
 })();
