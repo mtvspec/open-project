@@ -1,8 +1,33 @@
 @font-face {
-    font-family: "Sansation Light";
-    src: url('../resources/fonts/Sansation_Regular.ttf');
+    font-family: 'Sansation Light';
+    src: url('../resources/fonts/Sansation_Light.ttf');
+    font-family: 'Inconsolata LGC';
+    src: url('../resources/fonts/Inconsolata_LGC.ttf');
 }
 body{
-    padding-top: 70px;
-    font-family: "Sansation Regular";
+    font-family: 'Inconsolata LGC';
+    font-size: 10pt;
+    margin: 0 auto;
+    padding: 0;
+}
+
+div.field{
+    border: 1px solid #f3f3f3;
+    border-radius: 5px;
+    padding: 10px;
+}
+div.main{
+    left: 80px;
+    top: 0;
+    width: 100%;
+    background-color: #23527c;
+    position: fixed;
+}
+div.left-panel{
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100%;
+    display: block;
+    position: fixed;
 }

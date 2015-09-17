@@ -2,13 +2,12 @@
   'use strict';
 
   angular.module('app')
-    .controller('ProjectsCtrl', function($scope, $http){
+    .controller('ProjectsCtrl', function($scope, $http, $modal){
+
       $scope.vm = {};
       $scope.forms = {};
 
       var _url = '/api/projects';
-
-      console.log(_url);
 
       // GET all projects
       $http({
@@ -23,17 +22,31 @@
           response.statusText);
       };
 
-      // TODO Rewrite with method, is deprecated
-      // POST new projects
+      // Add new project
       $scope.addProject = function(){
-        $http.post('/api/projects', $scope.vm)
-          .success(function(data){
-            $scope.formData = {};
-            $scope.projects = data;
-          })
-          .error(function(error){
-            console.log('POST project error:', error);
-          });
+        var modalInstance = $modal.open({
+          templateUrl: 'templates/Projects/add/ProjectAddTmpl.html',
+          controller: 'ProjectAddCtrl',
+          size: 'md'
+        });
+
+        modalInstance.result.then(function(result){
+          console.log(result);
+          $scope.projects.push(result);
+        });
+      };
+      // Edit project
+      $scope.editProject = function(){
+        var modalInstance = $modal.open({
+          templateUrl: 'templates/Projects/edit/ProjectEditTmpl.html',
+          controller: 'ProjectEditCtrl',
+          size: 'md'
+        });
+
+        modalInstance.result.then(function(result){
+          console.log(result);
+          $scope.projects.push(result);
+        })
       };
     });
 })();

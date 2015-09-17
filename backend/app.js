@@ -3,10 +3,10 @@
 
   var express = require('express');
   var app = express();
+  var router = express.Router();
   var cookieParser = require('cookie-parser');
   var bodyParser = require('body-parser');
   var pg = require('pg');
-  var conStr = 'postgres://localhost:5432/mtvspec';
   pg.defaults = {
     host: 'localhost',
     port: 5432,
@@ -14,10 +14,47 @@
     password: 'mtvspec',
     database: 'mtvspec'
   };
+  var projects = require('./projects.js');
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
+
+  // Routers
+  var projectMemberRouter = express.Router({mergeParams: true});
+
+  projectMemberRouter.route('/')
+    .get(function(req, res){
+      pg.connect(function(err, client){
+        client.query({
+          text: "SELECT * FROM e_persons WHERE project_id = $1 ORDER BY id",
+          values: [req.params.projectID]
+        }, function(err, result){
+          if(err){
+            console.error('GET all projects: ', err);
+          }
+          else {
+            res.json(result.rows);
+          }
+        })
+      })
+    });
+
+  projectMemberRouter.route('/:memberID')
+    .get(function(req, res){
+      pg.connect(function(err, client){
+        client.query({
+          text: "SELECT * FROM e_persons WHERE id = $1"
+        }, function(err, result){
+          if(err){
+            console.error('GET all projects: ', err);
+          }
+          else {
+            res.json(result.rows);
+          }
+        })
+      })
+    });
 
   // Queries
 
@@ -54,87 +91,6 @@
     result = insert;
     return result;
   };
-// Routes for projects
-  app.route('/api/projects')
-    // Get all projects
-    .get(function(req, res){
-      var results = [];
-      var selectAllProjectsQuery = {
-        fields: {
-          projectName: 'projectName',
-          projectDescription: 'projectDescription',
-          projectStartDate: 'to_char(projectStartDate, \'DD-MM-YYYY\') as projectStartDate',
-          projectEndDate: 'to_char(projectEndDate, \'DD-MM-YYYY\') as projectEndDate',
-          projectBudget: 'projectBudget',
-          projectManagerId: 'projectManagerId'
-        },
-        tables: {
-          projects: 'e_projects'
-        }
-      };
-      pg.connect(function(err, client){
-        var query = client.query(selectFieldsFromTables(selectAllProjectsQuery));
-        query.on('row', function(row){
-          var KZT = '\u20B8';
-          row = {
-            projectName: row.projectname,
-            projectDescription: row.projectdescription,
-            projectStartDate: row.projectstartdate,
-            projectEndDate: row.projectenddate,
-            projectBudget: row.projectbudget + ' ' + KZT,
-            projectManagerId: row.projectmanagerid
-          };
-          results.push(row);
-        });
-        query.on('end', function(){
-          client.end();
-          return res.json(results);
-        });
-        if(err){
-          console.log(err);
-        }
-      });
-    })
-
-// POST new project
-    .post(function(req, res){
-      var results = [];
-      var selectAllProjectsQuery = {
-        fields: {
-          all: '*'
-        },
-        tables: {
-          projects: 'e_projects'
-        }
-      };
-      var data = {
-        projectName: req.body.projectName,
-        projectDescription: req.body.projectDescription,
-        projectStartDate: req.body.projectStartDate,
-        projectEndDate: req.body.projectEndDate,
-        projectBudget: req.body.projectBudget,
-        projectManagerId: req.body.projectManagerId};
-      pg.connect(function(err, client){
-        client.query("INSERT INTO e_projects(projectName, projectDescription, projectStartDate, projectEndDate, projectBudget, projectManagerId) values($1, $2, $3, $4, $5, $6)", [
-          data.projectName,
-          data.projectDescription,
-          data.projectStartDate,
-          data.projectEndDate,
-          data.projectBudget,
-          data.projectManagerId]);
-        var query = client.query(selectFieldsFromTables(selectAllProjectsQuery));
-        query.on('row', function(row){
-          results.push(row);
-        });
-        query.on('end', function(){
-          client.end();
-          return res.json(results);
-        });
-        if(err){
-          console.log('POST new project error: ', err);
-        }
-      });
-    });
 
   // Routes for tasks
   app.route('/api/tasks')
@@ -156,7 +112,7 @@
             client.end();
             return res.json(tasks);
           });
-        };
+        }
       });
     })
 
@@ -185,8 +141,8 @@
               console.log('Result:', result);
               client.end();
               return res.writeHead(200);
-            };
-          };
+            }
+          }
         });
       });
     });
@@ -206,7 +162,7 @@
           else {
             client.end();
             return res.sendStatus(200);
-          };
+          }
         });
       });
     });
@@ -469,5 +425,6 @@
       });
     });
 
+  app.use('/api/projects', projects);
   app.listen(3000);
 })();

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title">Edit Project</h4>
+</div>
+<div class="modal-body">
+  <form
+      name="forms.editProjectForm"
+      class="form">
+    <!-- Customer name -->
+    <div class="form-group">
+      <select
+          name="fldCustomerId"
+          class="form-control"
+          ng-model="projects.projectCustomerId"></select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+      name="btnSaveProject"
+      type="submit"
+      class="btn btn-primary"
+      ng-click="submit()">Save Project</button>
+  <button
+      name="btnCancel"
+      type="submit"
+      class="btn btn-default"
+      ng-click="$dismiss()">Cancel</button>
+</div>

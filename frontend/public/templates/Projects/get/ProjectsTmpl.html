@@ -1,43 +1,48 @@
 <br>
 <div class="container">
   <button class="btn btn-default" ui-sref="main">Home</button>
-  <button class="btn btn-default" ui-sref="addProject">Add project</button>
+  <button class="btn btn-default" ng-click="addProject()">Add project</button>
 </div>
 <br>
 <div class="container">
-  <table class="table table-hover">
+  <table class="table table-striped table-hover">
     <tr>
-      <th>Проект</th>
-      <th>Описание</th>
-      <th>Дата начала</th>
-      <th>Дата завершения</th>
-      <th>Бюджет проекта</th>
-      <th>Менеджер проекта</th>
+      <th>Customer</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Budget</th>
+      <th>Manager</th>
     </tr>
     <tr ng-repeat="project in projects">
       <td>
-        <span ng-bind="project.projectName"></span>
+        <span ng-bind="project.projectcustomerid"></span>
       </td>
       <td>
-        <span ng-bind="project.projectDescription"></span>
+        <span ng-bind="project.projectname"></span>
+      </td>
+      <td>
+        <span ng-bind="project.projectdescription"></span>
       </td>
       <td class="date">
-        <span ng-bind="project.projectStartDate"></span>
+        <span ng-bind="project.projectstartdate"></span>
       </td>
       <td class="date">
-        <span ng-bind="project.projectEndDate"></span>
+        <span ng-bind="project.projectenddate"></span>
       </td>
       <td class="money">
-        <span ng-bind="project.projectBudget"></span>
+        <span ng-bind="project.projectbudget"></span>
       </td>
       <td>
-        <span ng-bind="project.projectManagerId"></span>
+        <span ng-bind="project.projectmanagerid"></span>
+      </td>
+      <td>
+        <button type="button" class="btn btn-sm" ng-click="editProject(project)">Edit</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-sm" ng-click="deleteProject(project.id)">Delete</button>
       </td>
     </tr>
   </table>
-  <div class="well">
-    <pre>
-      {{projects | json}}
-    </pre>
-  </div>
 </div>

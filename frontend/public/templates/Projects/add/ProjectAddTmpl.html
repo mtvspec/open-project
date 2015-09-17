@@ -1,71 +1,130 @@
-<br>
-<div class="container">
-  <button class="btn btn-default" ui-sref="projects">Projects</button>
+<div class="modal-header">
+  <h4 class="modal-title">Add project</h4>
 </div>
-<div class="container">
-  <hr>
-  <form name="forms.addProjectForm"
-        class="form">
+<div class="modal-body">
+  <form
+      ng-submit="submit()"
+      name="forms.addProjectForm"
+      class="form">
+    <!-- Customer -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectCustomer">
+          Project customer:
+        </label>
+        <select
+            id="fldProjectCustomer"
+            name="fldProjectCustomer"
+            class="form-control"
+            ng-model="projectToAdd.projectCustomerId"
+            required>
+          <option value="1">Штаб АТЦ КНБ РК</option>
+          <option value="2">КГД МФ РК</option>
+        </select>
+      </div>
+    </div>
     <!-- Project name -->
     <div class="form-group">
-      <input name="projectName"
-             type="text"
-             class="form-control"
-             ng-model="vm.projectName"
-             placeholder="Enter project name...">
+      <div class="field">
+        <label for="fldProjectName">
+          Project name:
+        </label>
+        <input
+            id="fldProjectName"
+            name="fldProjectName"
+            type="text"
+            class="form-control"
+            ng-model="projectToAdd.projectName"
+            placeholder="Enter project name..."
+            required>
+      </div>
     </div>
     <!-- Project description -->
     <div class="form-group">
-      <input name="projectDescription"
-             type="text"
-             class="form-control"
-             ng-model="vm.projectDescription"
-             placeholder="Enter project description...">
+      <div class="field">
+        <label for="fldProjectDescription">
+          Project description:
+        </label>
+        <textarea
+            id="fldProjectDescription"
+            name="fldProjectDescription"
+            class="form-control"
+            ng-model="projectToAdd.projectDescription"
+            placeholder="Enter project description...">
+      </textarea>
+      </div>
     </div>
     <!-- Project start date -->
     <div class="form-group">
-      <input name="projectStartDate"
-             type="date"
-             class="form-control"
-             ng-model="vm.projectStartDate"
-             placeholder="Enter project start date...">
+      <div class="field">
+        <label for="fldProjectStartDate">
+          Project start date:
+        </label>
+        <input
+            id="fldProjectStartDate"
+            name="fldProjectStartDate"
+            type="date"
+            class="form-control"
+            ng-model="projectToAdd.projectStartDate"
+            placeholder="Enter project start date...">
+      </div>
     </div>
     <!-- Project end date -->
     <div class="form-group">
-      <input name="projectEndDate"
-             type="date"
-             class="form-control"
-             ng-model="vm.projectEndDate"
-             placeholder="Enter project end date...">
+      <div class="field">
+        <label for="fldProjectEndDate">
+          Project end date:
+        </label>
+        <input
+            id="fldProjectEndDate"
+            name="fldProjectEndDate"
+            type="date"
+            class="form-control"
+            value=""
+            ng-model="projectToAdd.projectEndDate"
+            placeholder="Enter project end date...">
+      </div>
     </div>
     <!-- Project budget -->
     <div class="form-group">
-      <input name="projectBudget"
-             type="number"
-             class="form-control"
-             ng-model="vm.projectBudget"
-             placeholder="Enter project budget...">
+      <div class="field">
+        <label for="fldProjectBudget">
+          Project budget:
+        </label>
+        <input
+            id="fldProjectBudget"
+            name="fldProjectBudget"
+            type="number"
+            class="form-control"
+            ng-model="projectToAdd.projectBudget"
+            placeholder="Enter project budget...">
+      </div>
     </div>
     <!-- Project manager -->
     <div class="form-group">
-      <select name="projectManager"
-              type="text"
-              class="form-control"
-              ng-model="vm.projectManagerId"
-              placeholder="Enter project manager...">
-        <option value="1">Абенов Д.К.</option>
-        <option value="2">Ожанов Р.А.</option>
-      </select>
+      <div class="field">
+        <label for="fldProjectManager">
+          Project manager:
+        </label>
+        <select
+            id="fldProjectManager"
+            name="fldProjectManager"
+            class="form-control"
+            ng-model="projectToAdd.projectManagerId">
+          <option value="1">Абенов Д.К.</option>
+          <option value="2">Ожанов Р.А.</option>
+        </select>
+      </div>
     </div>
-    <div class="container">
+    <div class="modal-footer">
       <button
-          type="submit"
-          class="btn btn-default"
-          ng-click="addProject()">Add project</button>
+          name="btnAddProject"
+          class="btn btn-primary">Add project</button>
       <button
-          type="submit"
+          name="btnCancel"
+          type="button"
           class="btn btn-default"
-          ui-sref="projects">Cancel</button>
+          ng-click="$dismiss()">Cancel</button>
     </div>
   </form>
 </div>
