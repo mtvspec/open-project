@@ -7,10 +7,17 @@
       class="form">
     <!-- Customer name -->
     <div class="form-group">
+      <label for="fldCustomerId">
+        Project customer:
+      </label>
       <select
+          id="fldCustomerId"
           name="fldCustomerId"
           class="form-control"
-          ng-model="projects.projectCustomerId"></select>
+          ng-model="projects.projectCustomerId">
+        <option value="1">Штаб АТЦ КНБ РК</option>
+        <option value="2">КГД МФ РК</option>
+      </select>
     </div>
   </form>
 </div>

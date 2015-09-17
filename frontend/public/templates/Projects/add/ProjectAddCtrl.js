@@ -13,7 +13,7 @@
       $scope.submit = submit;
 
       function hasError(field){
-        var field = $scope.forms.addProjectForm[field];
+        field = $scope.forms.addProjectForm[field];
         if(field){
           return field.$invalid && ($scope.addProjectForm.$submitted || !field.$pristine);
         }
@@ -25,11 +25,9 @@
         if($scope.forms.addProjectForm.$valid){
           $http({
             method: 'POST',
-            url: '/api2/projects',
+            url: '/api/projects',
             data: $scope.projectToAdd
           }).then(function(response){
-            var result = response;
-            console.log('Response:', result);
             $scope.projectToAdd.push(response);
             console.log('ProjectToAdd:', $scope.projectToAdd);
             $scope.$close($scope.projectToAdd);
