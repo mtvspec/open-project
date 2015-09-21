@@ -4,23 +4,17 @@
   angular.module('app')
     .controller('TaskDeleteCtrl', TaskDeleteCtrl);
 
-  function TaskDeleteCtrl($scope, $http, task){
+    function TaskDeleteCtrl($scope, TasksModel, task){
 
-    $scope.forms = {};
-    $scope.task = task;
+      $scope.forms = {};
+      $scope.taskToDelete = task;
 
-    $scope.submit = submit;
+      $scope.submit = submit;
 
-    function submit(){
-        $http({
-          method: 'DELETE',
-          url: '/api/tasks/' + task.id
-        }).then(function(){
-          $scope.$close('SUCCESS');
-        }), function(response){
-          console.error('DELETE task:', response.status, response.statusText);
-        };
-      };
-    };
-
+      function submit(){
+        TasksModel.remove($scope.taskToDelete).then(function(){
+          $scope.$close();
+        })
+      }
+    }
 })();

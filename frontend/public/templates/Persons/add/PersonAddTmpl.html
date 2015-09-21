@@ -1,0 +1,114 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add person</h4>
+</div>
+<div class="modal-body">
+  <form name="forms.addPersonForm" class="form">
+    <!-- Person's IIN -->
+    <div class="form-group">
+        <div class="field">
+          <label
+              for="personIin">IIN:</label>
+          <input
+              id="personIin"
+              name="fldIIN"
+              type="number"
+              minlength="12"
+              maxlength="12"
+              class="form-control"
+              ng-model="personToAdd.iin"
+              placeholder="Enter IIN..."
+              required>
+        </div>
+      </div>
+    <!-- Person's last name -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            for="personLastName">Last name:</label>
+        <input
+            id="personLastName"
+            name="fldLastName"
+            type="text"
+            class="form-control"
+            ng-model="personToAdd.lastName"
+            placeholder="Enter last name..."
+            required>
+      </div>
+    </div>
+    <!-- Person's first name -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            for="personFirstName">First name:</label>
+        <input
+            id="personFirstName"
+            name="fldFirstName"
+            type="text"
+            class="form-control"
+            ng-model="personToAdd.firstName"
+            placeholder="First name..."
+            required>
+      </div>
+    </div>
+    <!-- Person's middle name -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            for="personMiddleName">Middle name:</label>
+        <input
+            id="personMiddleName"
+            name="fldMiddleName"
+            type="text"
+            class="form-control"
+            ng-model="personToAdd.middleName"
+            placeholder="Enter middle name...">
+      </div>
+    </div>
+    <!-- Person's date of berth -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            for="personDOB">Date of birth:</label>
+        <input
+            id="personDOB"
+            name="fldDOB"
+            type="date"
+            class="form-control"
+            ng-model="personToAdd.dob"
+            placeholder="Enter date of birth..."
+            required>
+      </div>
+    </div>
+    <!-- Person's sex -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            for="personSex">Sex:</label>
+        <select
+            id="personSex"
+            name="fldPersonSex"
+            class="form-control"
+            ng-model="personToAdd.sex"
+            placeholder="Enter sex..."
+            required>
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div>
+    <button
+        name="btnAddPerson"
+        type="submit"
+        class="btn btn-primary"
+        ng-click="submit()">Add person</button>
+    <button
+        name="btnCancel"
+        type="button"
+        class="btn btn-default"
+        ng-click="$dismiss()">Cancel</button>
+  </div>
+</div>

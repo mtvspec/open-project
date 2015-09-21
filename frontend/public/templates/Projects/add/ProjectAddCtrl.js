@@ -4,7 +4,7 @@
   angular.module('app')
     .controller('ProjectAddCtrl', ProjectAddCtrl);
 
-    function ProjectAddCtrl($scope, $http){
+    function ProjectAddCtrl($scope, ProjectsModel){
 
       $scope.forms = {};
       $scope.projectToAdd = {};
@@ -12,8 +12,8 @@
       $scope.hasError = hasError;
       $scope.submit = submit;
 
-      function hasError(field){
-        field = $scope.forms.addProjectForm[field];
+      function hasError(fieldName){
+        var field = $scope.forms.addProjectForm[fieldName];
         if(field){
           return field.$invalid && ($scope.addProjectForm.$submitted || !field.$pristine);
         }
@@ -21,21 +21,10 @@
 
       function submit(){
         $scope.forms.addProjectForm.$setSubmitted();
-        console.log('ProjectToAdd:', $scope.projectToAdd);
         if($scope.forms.addProjectForm.$valid){
-          $http({
-            method: 'POST',
-            url: '/api/projects',
-            data: $scope.projectToAdd
-          }).then(function(response){
-            $scope.projectToAdd.push(response);
-            console.log('ProjectToAdd:', $scope.projectToAdd);
-            $scope.$close($scope.projectToAdd);
-          }), function(response){
-            console.error('POST project:',
-              response.status,
-              response.statusText);
-          };
+          ProjectsModel.create($scope.projectToAdd).then(function(){
+            $scope.$close();
+          });
         }
       }
     }

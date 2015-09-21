@@ -2,69 +2,63 @@
   'use strict';
 
   angular.module('app')
-    .controller('TasksCtrl', function($scope, $http, $modal) {
+    .controller('TasksCtrl', function($scope, $http, $modal, TasksModel) {
 
-      $scope.task = {};
-
-      // Get all tasks
-      $http({
-        method: 'GET',
-        url: '/api/tasks'
-      }).then(function(response){
-        $scope.tasks = response.data;
-      }, function (response) {
-        console.error('GET all tasks: ', response.status, response.statusText);
+      // GET all tasks
+      TasksModel.getAllTasks().then(function(tasks){
+        $scope.tasks = tasks;
       });
 
-      // Add task
+      // Add new task
       $scope.addTask = function() {
-        var modalInstance = $modal.open({
+        $modal.open({
           templateUrl: 'templates/Tasks/add/TaskAddTmpl.html',
           controller: 'TaskAddCtrl',
           size: 'md'
         });
-
-        modalInstance.result.then(function(result){
-          console.debug('SUCCESS: ', result);
-        });
       };
 
-      // Edit task
-      $scope.editTask = function(task){
-        var modalInstance = $modal.open({
-          templateUrl: '/templates/Tasks/edit/TaskEditTmpl.html',
-          controller: 'TaskEditCtrl',
+      // Show task info
+      $scope.showTaskInfo = function(taskInfo){
+        $modal.open({
+          templateUrl: 'templates/Tasks/info/TaskInfoTmpl.html',
+          controller: 'TaskInfoCtrl',
           resolve: {
-            originalTask: function () {
-              return task;
+            task: function(){
+              return taskInfo;
             }
           },
           size: 'md'
         });
+      };
 
-        modalInstance.result.then(function (result) {
-          console.debug('SUCCESS: ', result);
+      // Edit task
+      $scope.editTask = function(taskToEdit) {
+        $modal.open({
+          templateUrl: '/templates/Tasks/edit/TaskEditTmpl.html',
+          controller: 'TaskEditCtrl',
+          resolve: {
+            originalTask: function(){
+              return taskToEdit;
+            }
+          },
+          size: 'md'
         });
+      };
 
         // Delete task
-        $scope.deleteTask = function(taskCopy){
-          console.log('Test');
-          var modalInstance = $modal.open({
+        $scope.deleteTask = function(taskToDelete){
+          $modal.open({
             templateUrl: 'templates/Tasks/delete/TaskDeleteTmpl.html',
             controller: 'TaskDeleteCtrl',
             resolve: {
               task: function(){
-                return taskCopy;
+                return taskToDelete;
               }
             },
             size: 'md'
           });
-
-          modalInstance.result.then(function(result){
-            console.debug('SUCCESS: ', result);
-          });
         };
 
-      };
     });
 })();

@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title">Task Info</h4>
+</div>
+<div class="modal-body">
+  <form
+      name="forms.taskInfoForm"
+      class="form">
+    <!-- Task name -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            >Task:</label>
+      <span
+          class="form-control"
+          ng-bind="taskInfo.taskName"
+          required></span>
+      </div>
+    </div>
+    <!-- Task description -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            >Description:</label>
+      <span
+          class="form-control"
+          ng-bind="taskInfo.taskDescription"
+          required></span>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+      name="btnCancel"
+      type="button"
+      class="btn btn-default"
+      ng-click="$dismiss()">Close</button>
+</div>

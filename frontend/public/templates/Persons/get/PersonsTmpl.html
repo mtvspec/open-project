@@ -1,11 +1,12 @@
+<br>
 <div class="container">
   <div class="form-group">
     <button
         class="btn btn-default"
-        ui-sref="main">Home</button>
+        ui-sref="main.layout">Home</button>
     <button
         class="btn btn-default"
-        ui-sref="addPerson">Add person</button>
+        ng-click="addPerson()">Add person</button>
   </div>
     <div class="form-group">
       <input
@@ -18,6 +19,7 @@
 <div class="container">
   <form class="form">
     <table class="table table-striped table-hover">
+      <thead>
       <tr>
         <th>ИИН</th>
         <th>Фамилия</th>
@@ -26,6 +28,8 @@
         <th>Дата рождения</th>
         <th></th>
       </tr>
+      </thead>
+      <tbody>
       <tr ng-repeat="person in persons | filter: persons.searchPerson track by $index">
         <td class="center">
           <span ng-bind="person.iin"></span>
@@ -44,12 +48,23 @@
         </td>
         <td>
           <button
+              name="btnInfoPerson"
+              type="button"
+              class="btn btn-sm"
+              ng-click="showPersonInfo(person)">Info</button>
+          <button
+              name="btnEditPerson"
+              type="button"
+              class="btn btn-sm"
+              ng-click="editPerson(person)">Edit</button>
+          <button
               name="btnDeletePerson"
               type="button"
               class="btn btn-sm"
-              ng-click="deletePerson(person.id)">Delete</button>
+              ng-click="deletePerson(person)">Delete</button>
         </td>
       </tr>
+      </tbody>
     </table>
   </form>
 </div>

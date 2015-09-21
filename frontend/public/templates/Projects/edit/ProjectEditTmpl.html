@@ -14,10 +14,118 @@
           id="fldCustomerId"
           name="fldCustomerId"
           class="form-control"
-          ng-model="projects.projectCustomerId">
-        <option value="1">Штаб АТЦ КНБ РК</option>
+          ng-model="projectToEdit.projectCustomerId">
+        <option value="1" ng-bind="customer.id">{{customer.companyname}}</option>
         <option value="2">КГД МФ РК</option>
       </select>
+    </div>
+    <!-- Project formal name -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectFormalName">
+          Project formal name:
+        </label>
+        <input
+            id="fldProjectFormalName"
+            name="fldProjectFormalName"
+            type="text"
+            class="form-control"
+            ng-model="projectToEdit.projectFormalName"
+            placeholder="Enter project formal name..."
+            required>
+      </div>
+    </div>
+    <!-- Project name -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectName">
+          Project name:
+        </label>
+        <input
+            id="fldProjectName"
+            name="fldProjectName"
+            type="text"
+            class="form-control"
+            ng-model="projectToEdit.projectName"
+            placeholder="Enter project name..."
+            required>
+      </div>
+    </div>
+    <!-- Project description -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectDescription">
+          Project description:
+        </label>
+        <textarea
+            id="fldProjectDescription"
+            name="fldProjectDescription"
+            class="form-control"
+            ng-model="projectToEdit.projectDescription"
+            placeholder="Enter project description...">
+      </textarea>
+      </div>
+    </div>
+    <!-- Project start date -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectStartDate">
+          Project start date:
+        </label>
+        <input
+            id="fldProjectStartDate"
+            name="fldProjectStartDate"
+            type="date"
+            class="form-control"
+            ng-model="projectToEdit.projectStartDate"
+            placeholder="Enter project start date...">
+      </div>
+    </div>
+    <!-- Project end date -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectEndDate">
+          Project end date:
+        </label>
+        <input
+            id="fldProjectEndDate"
+            name="fldProjectEndDate"
+            type="date"
+            class="form-control"
+            value=""
+            ng-model="projectToEdit.projectEndDate"
+            placeholder="Enter project end date...">
+      </div>
+    </div>
+    <!-- Project budget -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectBudget">
+          Project budget:
+        </label>
+        <input
+            id="fldProjectBudget"
+            name="fldProjectBudget"
+            class="form-control"
+            ng-model="projectToEdit.projectBudget"
+            placeholder="Enter project budget...">
+      </div>
+    </div>
+    <!-- Project manager -->
+    <div class="form-group">
+      <div class="field">
+        <label for="fldProjectManager">
+          Project manager:
+        </label>
+        <select
+            id="fldProjectManager"
+            name="fldProjectManager"
+            class="form-control"
+            ng-model="projectToEdit.projectManagerId">
+          <option value="1">Абенов Д.К.</option>
+          <option value="2">Ожанов Р.А.</option>
+        </select>
+      </div>
     </div>
   </form>
 </div>

@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title">Project delete confirmation</h4>
+</div>
+<div class="modal-body">
+  <form
+      name="forms.deleteProjectForm"
+      class="form">
+    <!-- Task name -->
+    <div class="form-group">
+      <label
+          >Delete this project?</label>
+      <span
+          class="form-control"
+          ng-bind="projectToDelete.projectName"
+          required></span>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+      name="btnDeleteProject"
+      type="submit"
+      class="btn btn-primary"
+      ng-click="submit()">Delete project</button>
+  <button
+      name="btnCancel"
+      type="button"
+      class="btn btn-default"
+      ng-click="$dismiss()">Cancel</button>
+</div>

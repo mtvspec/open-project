@@ -2,51 +2,63 @@
   'use strict';
 
   angular.module('app')
-    .controller('ProjectsCtrl', function($scope, $http, $modal){
-
-      $scope.vm = {};
-      $scope.forms = {};
-
-      var _url = '/api/projects';
+    .controller('ProjectsCtrl', function($scope, $modal, ProjectsModel){
 
       // GET all projects
-      $http({
-        method: 'GET',
-        url: _url
-      }).then(function(response){
-        $scope.projects = response.data;
-      }), function(response){
-        console.error(
-          'GET all projects: ',
-          response.status,
-          response.statusText);
-      };
+      ProjectsModel.getAllProjects().then(function(projects){
+        $scope.projects = projects;
+      });
 
       // Add new project
       $scope.addProject = function(){
-        var modalInstance = $modal.open({
+        $modal.open({
           templateUrl: 'templates/Projects/add/ProjectAddTmpl.html',
           controller: 'ProjectAddCtrl',
           size: 'md'
         });
-
-        modalInstance.result.then(function(result){
-          console.log(result);
-          $scope.projects.push(result);
-        });
       };
-      // Edit project
-      $scope.editProject = function(){
-        var modalInstance = $modal.open({
-          templateUrl: 'templates/Projects/edit/ProjectEditTmpl.html',
-          controller: 'ProjectEditCtrl',
+
+      // Show project info
+      $scope.showProjectInfo = function(projectInfo){
+        $modal.open({
+          templateUrl: 'templates/Tasks/info/TaskInfoTmpl.html',
+          controller: 'ProjectInfoCtrl',
+          resolve: {
+            project: function(){
+              return projectInfo;
+            }
+          },
           size: 'md'
         });
-
-        modalInstance.result.then(function(result){
-          console.log(result);
-          $scope.projects.push(result);
-        })
       };
+
+      // Edit project
+      $scope.editProject = function(projectToEdit){
+        $modal.open({
+          templateUrl: 'templates/Projects/edit/ProjectEditTmpl.html',
+          controller: 'ProjectEditCtrl',
+          resolve: {
+            originalProject: function(){
+              return projectToEdit;
+            }
+          },
+          size: 'md'
+        });
+      };
+
+      // Delete project
+      $scope.deleteProject = function(projectToDelete){
+        $modal.open({
+          templateUrl: 'templates/Projects/delete/ProjectDeleteTmpl.html',
+          controller: 'ProjectDeleteCtrl',
+          resolve: {
+            project: function(){
+              return projectToDelete;
+            }
+          },
+          size: 'md'
+        });
+      };
+
     });
 })();

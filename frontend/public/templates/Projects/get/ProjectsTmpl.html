@@ -1,48 +1,70 @@
 <br>
 <div class="container">
-  <button class="btn btn-default" ui-sref="main">Home</button>
-  <button class="btn btn-default" ng-click="addProject()">Add project</button>
+  <div class="form-group">
+    <button
+        class="btn btn-default"
+        ui-sref="main.layout">Home</button>
+    <button
+        class="btn btn-default"
+        ng-click="addProject()">Add project</button>
+  </div>
+  <div class="form-group">
+    <input
+        class="form-control"
+        ng-model="projects.searchProject"
+        placeholder="Search project...">
+  </div>
 </div>
 <br>
 <div class="container">
   <table class="table table-striped table-hover">
-    <tr>
-      <th>Customer</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Budget</th>
-      <th>Manager</th>
-    </tr>
-    <tr ng-repeat="project in projects">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Formal name</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th>Budget</th>
+        <th>Manager</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="project in projects | filter: projects.searchProject track by $index">
       <td>
-        <span ng-bind="project.projectcustomerid"></span>
+        <span ng-bind="project.projectCustomerName"></span>
       </td>
       <td>
-        <span ng-bind="project.projectname"></span>
+        <span ng-bind="project.projectFormalName"></span>
       </td>
       <td>
-        <span ng-bind="project.projectdescription"></span>
+        <span ng-bind="project.projectName"></span>
+      </td>
+      <td>
+        <span ng-bind="project.projectDescription"></span>
       </td>
       <td class="date">
-        <span ng-bind="project.projectstartdate"></span>
+        <span ng-bind="project.projectStartDate"></span>
       </td>
       <td class="date">
-        <span ng-bind="project.projectenddate"></span>
+        <span ng-bind="project.projectEndDate"></span>
       </td>
       <td class="money">
-        <span ng-bind="project.projectbudget"></span>
+        <span ng-bind="project.projectBudget"></span>
       </td>
       <td>
-        <span ng-bind="project.projectmanagerid"></span>
+        <span ng-bind="project.projectManagerId"></span>
       </td>
       <td>
         <button type="button" class="btn btn-sm" ng-click="editProject(project)">Edit</button>
       </td>
       <td>
-        <button type="button" class="btn btn-sm" ng-click="deleteProject(project.id)">Delete</button>
+        <button type="button" class="btn btn-sm" ng-click="deleteProject(project)">Delete</button>
       </td>
     </tr>
+    </tbody>
   </table>
 </div>

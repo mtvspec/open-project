@@ -7,15 +7,38 @@
       class="form">
     <!-- Task name -->
     <div class="form-group">
-      <input
-          name="fldTaskName"
-          type="text"
-          class="form-control"
-          ng-model="tasks.taskname"
-          placeholder="Task name..."
-          required>
-      <div ng-messages="forms.editTaskForm.FldTaskName.$error" ng-show="hasError('fldTaskName')">
-        <div ng-message="required">This field is required</div>
+      <div class="field">
+        <label
+            for="fldTaskName">Task:</label>
+        <input
+            id="fldTaskName"
+            name="fldTaskName"
+            type="text"
+            class="form-control"
+            ng-model="taskToEdit.taskName"
+            placeholder="Task name..."
+            required>
+        <div ng-messages="forms.editTaskForm.fldTaskName.$error" ng-show="hasError('fldTaskName')">
+          <div ng-message="required">This field is required</div>
+        </div>
+      </div>
+    </div>
+    <!-- Task description -->
+    <div class="form-group">
+      <div class="field">
+        <label
+            for="fldTaskDescription">Description:</label>
+        <input
+            id="fldTaskDescription"
+            name="fldTaskDescription"
+            type="text"
+            class="form-control"
+            ng-model="taskToEdit.taskDescription"
+            placeholder="Task description..."
+            required>
+        <div ng-messages="forms.editTaskForm.fldTaskDescription.$error" ng-show="hasError('fldTaskDescription')">
+          <div ng-message="required">This field is required</div>
+        </div>
       </div>
     </div>
   </form>

@@ -1,8 +1,9 @@
+<br>
 <div class="container">
   <div class="form-group">
     <button
         class="btn btn-default"
-        ui-sref="main">Home</button>
+        ui-sref="main.layout">Home</button>
     <button
         class="btn btn-default"
         ng-click="addTask()">Add task</button>
@@ -15,22 +16,30 @@
   </div>
   <div class="form-group">
     <table class="table table-striped table-hover">
-      <tr>
-        <th>Задача</th>
-        <th></th>
-        <th></th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
       <tr ng-repeat="task in tasks | filter: tasks.searchTask track by $index">
+        <td class="task-name">
+          <span ng-bind="task.taskName"></span>
+        </td>
         <td>
-          <span ng-bind="task.taskname"></span>
+          <button type="button" class="btn btn-sm" ng-click="showTaskInfo(task)">Info</button>
         </td>
         <td>
           <button type="button" class="btn btn-sm" ng-click="editTask(task)">Edit</button>
         </td>
         <td>
-          <button type="button" class="btn btn-sm" ng-click="deleteTask(task.id)">Delete</button>
+          <button type="button" class="btn btn-sm" ng-click="deleteTask(task)">Delete</button>
         </td>
       </tr>
+      </tbody>
     </table>
   </div>
 </div>

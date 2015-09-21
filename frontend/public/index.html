@@ -5,8 +5,11 @@
   <title>{{ APP_TITLE }}</title>
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="templates/Projects/get/ProjectsTmpl.css">
+  <link rel="stylesheet" href="templates/Tasks/get/TasksTmpl.css">
   <link rel="stylesheet" href="templates/Contacts/get/ContactsTmpl.css">
-  <link rel="stylesheet" href="./templates/Persons/PersonsTmpl.css">
+  <link rel="stylesheet" href="templates/Persons/get/PersonsTmpl.css">
+  <link rel="stylesheet" href="templates/Login/login.css">
 </head>
 <body>
   <div ui-view></div>
@@ -16,6 +19,7 @@
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="js/app.js"></script>
+  <script src="templates/Login/LoginCtrl.js"></script>
   <script src="templates/Main/HeaderCtrl.js"></script>
   <script src="templates/Main/LeftPanelCtrl.js"></script>
   <script src="templates/Main/RightPanelCtrl.js"></script>
@@ -24,14 +28,24 @@
   <script src="templates/Projects/get/ProjectsCtrl.js"></script>
   <script src="templates/Projects/add/ProjectAddCtrl.js"></script>
   <script src="templates/Projects/edit/ProjectEditCtrl.js"></script>
+  <script src="templates/Projects/delete/ProjectDeleteCtrl.js"></script>
   <script src="templates/Projects/model/ProjectsModel.js"></script>
-  <script src="templates/Persons/PersonsCtrl.js"></script>
+  <script src="templates/Persons/get/PersonsCtrl.js"></script>
+  <script src="templates/Persons/add/PersonAddCtrl.js"></script>
+  <script src="templates/Persons/edit/PersonEditCtrl.js"></script>
+  <script src="templates/Persons/info/PersonInfoCtrl.js"></script>
+  <script src="templates/Persons/delete/PersonDeleteCtrl.js"></script>
+  <script src="templates/Persons/model/PersonsModel.js"></script>
   <script src="templates/Tasks/get/TasksCtrl.js"></script>
+  <script src="templates/Tasks/info/TaskInfoCtrl.js"></script>
   <script src="templates/Tasks/add/TaskAddCtrl.js"></script>
   <script src="templates/Tasks/edit/TaskEditCtrl.js"></script>
   <script src="templates/Tasks/delete/TaskDeleteCtrl.js"></script>
   <script src="templates/Tasks/model/TasksModel.js"></script>
   <script src="templates/Contacts/get/ContactsCtrl.js"></script>
+  <script src="templates/Contacts/add/ContactAddCtrl.js"></script>
+  <script src="templates/Contacts/edit/ContactEditCtrl.js"></script>
+  <script src="templates/Contacts/delete/ContactDeleteCtrl.js"></script>
   <script src="templates/Contacts/model/ContactsModel.js"></script>
 </body>
 </html>

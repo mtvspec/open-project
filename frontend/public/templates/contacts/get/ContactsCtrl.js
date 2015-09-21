@@ -4,33 +4,23 @@
   // TODO: Rewrite contacts (based on projects, persons and members entities)
 
   angular.module('app')
-    .controller('ContactsCtrl', function($scope, $http, ContactsModel){
+    .controller('ContactsCtrl', function($scope, $modal, ContactsModel){
       $scope.contacts = {};
 
       // GET all contacts
       ContactsModel.getAll().then(function (contacts) {
         $scope.contacts = contacts;
       }, function (response) {
-        console.log('Error', response.status);
+        console.log('Error', response.status.statusText);
       });
-      $http.get('/api/contacts')
-        .success(function(data){
-          $scope.contacts = data;
-        })
-        .error(function(error){
-          console.log('GET all contacts error:', error);
-        });
 
-      // POST new contact
+      // Add new contact
       $scope.addContact = function(){
-        $http.post('/api/contacts', $scope.formData)
-          .success(function(data){
-            $scope.formData = {};
-            $scope.contacts = data;
-          })
-          .error(function(error){
-            console.log('POST contact error:', error);
-          });
+        $modal.open({
+          templateUrl: 'templates/Contacts/add/ContactAddTmpl.html',
+          controller: 'ContactAddCtrl',
+          size: 'md'
+        })
       };
 
       // DELETE contact

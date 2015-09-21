@@ -1,20 +1,17 @@
-@font-face {
-    font-family: 'Sansation Light';
-    src: url('../resources/fonts/Sansation_Light.ttf');
+@font-face{
     font-family: 'Inconsolata LGC';
     src: url('../resources/fonts/Inconsolata_LGC.ttf');
 }
 body{
-    font-family: 'Inconsolata LGC';
+    font-family: 'Inconsolata LGC', sans-serif;
     font-size: 10pt;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
 }
-
 div.field{
     border: 1px solid #f3f3f3;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
 }
 div.main{
     left: 80px;
@@ -24,10 +21,100 @@ div.main{
     position: fixed;
 }
 div.left-panel{
-    top: 0;
+    top: 60px;
     left: 0;
     width: 80px;
     height: 100%;
     display: block;
     position: fixed;
+    background-color: #1b6d85;
+    opacity: 0.5;
+}
+div#header{
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    top: 0;
+    left: 0;
+    right: 300px;
+    margin: 0 auto;
+    padding: 12px;
+    background-color: rgb(68, 68, 68);
+    box-shadow: 0 1px 10px #0C0C0C;
+    display: block;
+    z-index: 100;
+}
+div#left{
+    position: fixed;
+    width: 80px;
+    top: 60px;
+    left: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(39, 39, 39);
+    box-shadow: inset 0 2px 220px black;
+}
+div#project-container{
+    margin: 0 auto;
+    padding: 10px;
+}
+div#right{
+    position: fixed;
+    width: 300px;
+    top: 60px;
+    right: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #2563c6;
+}
+div#content{
+    position: fixed;
+    left: 80px;
+    top: 60px;
+    right:300px;
+    background-color: #e2c46b;
+    bottom: 60px;
+}
+div#footer{
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    left: 80px;
+    right: 300px;
+    background-color: #6a6a6a;
+    padding: 10px;
+    display: block;
+}
+ul.project-bar{
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+ul.project-bar li{
+    list-style: none;
+    padding: 5px;
+}
+ul.project-bar button{
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    background-color: whitesmoke;
+    margin: 0;
+    left: 10px;
+    display: block;
+    padding: 0;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 1px 2px #080808;
+    text-shadow: rgba(156, 154, 165, 0.48) 0 1px 3px;
+    font-weight: bold;
+    font-size: 24pt;
+}
+button.btn-project{
+    box-shadow: inset 0 1px 2px #080808;
+}
+form#message-input{
+    margin: 5px;
 }
