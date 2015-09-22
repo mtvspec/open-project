@@ -46,11 +46,11 @@
       <td>
         <span ng-bind="project.projectDescription"></span>
       </td>
-      <td class="date">
-        <span ng-bind="project.projectStartDate"></span>
+      <td class="text">
+        <span ng-bind="project.projectStartDate | date: 'dd-mm-yyyy'"></span>
       </td>
-      <td class="date">
-        <span ng-bind="project.projectEndDate"></span>
+      <td class="text">
+        <span ng-bind="project.projectEndDate | date: 'dd-mm-yyyy'"></span>
       </td>
       <td class="money">
         <span ng-bind="project.projectBudget"></span>
