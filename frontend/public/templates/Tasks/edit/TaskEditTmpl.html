@@ -28,14 +28,13 @@
       <div class="field">
         <label
             for="fldTaskDescription">Description:</label>
-        <input
+        <textarea
             id="fldTaskDescription"
             name="fldTaskDescription"
-            type="text"
             class="form-control"
             ng-model="taskToEdit.taskDescription"
-            placeholder="Task description..."
-            required>
+            placeholder="Task description...">
+        </textarea>
         <div ng-messages="forms.editTaskForm.fldTaskDescription.$error" ng-show="hasError('fldTaskDescription')">
           <div ng-message="required">This field is required</div>
         </div>

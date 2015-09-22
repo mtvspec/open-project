@@ -9,8 +9,9 @@
     <div class="form-group">
       <div class="field">
         <label
-            >Task:</label>
+            for="fldTaskName">Task:</label>
       <span
+          id="fldTaskName"
           class="form-control"
           ng-bind="taskInfo.taskName"
           required></span>
@@ -20,11 +21,14 @@
     <div class="form-group">
       <div class="field">
         <label
-            >Description:</label>
-      <span
-          class="form-control"
-          ng-bind="taskInfo.taskDescription"
-          required></span>
+            for="fldTaskDescription">Description:</label>
+        <textarea>
+          <span
+              id="fldTaskDescription"
+              class="form-control"
+              ng-bind="taskInfo.taskDescription"
+              ></span>
+          </textarea>
       </div>
     </div>
   </form>

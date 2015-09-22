@@ -1,15 +1,10 @@
-<br>
 <div class="container">
-  <div class="form-group">
-    <button
-        class="btn btn-default"
-        ui-sref="main.layout">Home</button>
+  <div id="project-toolbar">
     <button
         class="btn btn-default"
         ng-click="addProject()">Add project</button>
-  </div>
-  <div class="form-group">
     <input
+        id="search-project"
         class="form-control"
         ng-model="projects.searchProject"
         placeholder="Search project...">
@@ -21,13 +16,9 @@
     <thead>
       <tr>
         <th>Customer</th>
-        <th>Formal name</th>
         <th>Name</th>
-        <th>Description</th>
         <th>Start date</th>
         <th>End date</th>
-        <th>Budget</th>
-        <th>Manager</th>
         <th></th>
         <th></th>
       </tr>
@@ -38,25 +29,13 @@
         <span ng-bind="project.projectCustomerName"></span>
       </td>
       <td>
-        <span ng-bind="project.projectFormalName"></span>
-      </td>
-      <td>
         <span ng-bind="project.projectName"></span>
-      </td>
-      <td>
-        <span ng-bind="project.projectDescription"></span>
       </td>
       <td class="text">
         <span ng-bind="project.projectStartDate | date: 'dd-mm-yyyy'"></span>
       </td>
       <td class="text">
         <span ng-bind="project.projectEndDate | date: 'dd-mm-yyyy'"></span>
-      </td>
-      <td class="money">
-        <span ng-bind="project.projectBudget"></span>
-      </td>
-      <td>
-        <span ng-bind="project.projectManagerId"></span>
       </td>
       <td>
         <button type="button" class="btn btn-sm" ng-click="editProject(project)">Edit</button>
