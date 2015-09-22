@@ -13,6 +13,7 @@
 
     return {
       create: function(data){
+        console.log(data);
         return $http({
           method: 'POST',
           url: _url,
@@ -43,8 +44,12 @@
           var i, len;
           for(i = 0, len = _persons.length; i < len; i++){
             if(_persons[i].id === data.id){
-              _persons[i].taskName = data.taskName;
-              _persons[i].taskDescription = data.taskDescription;
+              _persons[i].iin = data.iin;
+              _persons[i].lastName = data.lastName;
+              _persons[i].firstName = data.firstName;
+              _persons[i].middleName = data.middleName;
+              _persons[i].dob = data.dob;
+              _persons[i].genderId = data.genderId;
               break;
             }
           }
