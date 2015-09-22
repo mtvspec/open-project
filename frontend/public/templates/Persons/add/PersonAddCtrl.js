@@ -23,7 +23,10 @@
       $scope.forms.addPersonForm.$setSubmitted();
       if($scope.forms.addPersonForm.$valid){
         PersonsModel.create($scope.personToAdd).then(function(){
+          console.log($scope.personToAdd);
           $scope.$close();
+        }, function(response){
+          console.error('Person create:', response.status.statusText);
         });
       }
     }

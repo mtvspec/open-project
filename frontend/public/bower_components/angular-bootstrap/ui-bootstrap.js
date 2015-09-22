@@ -1676,7 +1676,6 @@ function($compile, $parse, $document, $rootScope, $position, dateFilter, datePar
         attrs.$observe('datepickerPopup', function(value, oldValue) {
             var newDateFormat = value || datepickerPopupConfig.datepickerPopup;
             // Invalidate the $modelValue to ensure that formatters re-run
-            // FIXME: Refactor when PR is merged: https://github.com/angular/angular.js/pull/10764
             if (newDateFormat !== dateFormat) {
               dateFormat = newDateFormat;
               ngModel.$modelValue = null;
@@ -3323,7 +3322,6 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.b
 
   /**
    * Returns the actual instance of the $tooltip service.
-   * TODO support multiple triggers
    */
   this.$get = ['$window', '$compile', '$timeout', '$document', '$position', '$interpolate', '$rootScope', '$parse', function($window, $compile, $timeout, $document, $position, $interpolate, $rootScope, $parse) {
     return function $tooltip(type, prefix, defaultTriggerShow, options) {
@@ -3419,7 +3417,6 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.b
             ttScope.origScope = scope;
 
             // By default, the tooltip is not open.
-            // TODO add ability to start tooltip opened
             ttScope.isOpen = false;
 
             function toggleTooltipBind() {
@@ -3506,7 +3503,6 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.b
 
               // And now we remove it from the DOM. However, if we have animation, we
               // need to wait for it to expire beforehand.
-              // FIXME: this is a placeholder for a port of the transitions library.
               if (ttScope.animation) {
                 if (!transitionTimeout) {
                   transitionTimeout = $timeout(removeTooltip, 500);
